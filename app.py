@@ -60,11 +60,11 @@ if uploaded_file:
         # Segmentation
         def segment(score):
             if score >= 8:
-                return "High Value"
+                return "Act Immediately"
             elif score >= 5:
-                return "Mid Value"
+                return "Check for Prospects"
             else:
-                return "Low Value"
+                return "To Be Developed"
 
         df['Segment'] = df['Total Score'].apply(segment)
 
@@ -81,7 +81,7 @@ if uploaded_file:
         
         # Display company names by segment
         st.subheader("Companies by Segment")
-        for segment_label in ['High Value', 'Mid Value', 'Low Value']:
+        for segment_label in ['Act Immediately', 'Check for Prospects', 'To Be Developed']:
             st.markdown(f"**{segment_label} Companies:**")
             companies = df[df['Segment'] == segment_label]['Company Name'].dropna().tolist()
             if companies:
